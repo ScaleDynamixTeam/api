@@ -1,67 +1,30 @@
-# ScaleDynamix api v1
+# Nestify api v1
 
-REST API for managing stacks and sites on ScaleDynamix platform
+REST API for managing stacks and sites on Nestify platform
 
 ## Authentication
 
 Include your API key in request header 'Key; 
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/sites
+    curl -H "Key: $KEY" https://api.nestify.io/v1/sites
 
-API keys can be found at https://platform.scaledynamix.com/settings
+API keys can be found at https://my.nestify.io/settings
 
 # Endpoint
 
-	https://api.scaledynamix.com/v1/
+	https://api.nestify.io/v1/
 
-## List cloud providers
+## List all servers
 
-List currently defined cloud providers
+List currently active servers with nested instance data
 
-	GET /v1/providers
-
-Parameters: None
-
-cURL (Example)
-
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/providers
-
-Response
-
-    {
-        "result": {
-            "providers": [
-                {
-                    "id": "5",
-                    "provider": "do",
-                    "name": "dev-do-account",
-                    "created": "2018-07-30 10:58:17"
-                },
-                {
-                    "id": "6",
-                    "provider": "aws",
-                    "name": "office-aws-primary",
-                    "created": "2018-08-06 15:11:52"
-                }
-            ]
-        },
-        "success": true,
-        "errors": []
-    }
-    
-
-
-## List all stacks
-
-List currently active stacks with nested instance data
-
-	GET /v1/stacks
+	GET /v1/servers
 
 Parameters: None
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/stacks
+    curl -H "Key: $KEY" https://api.nestify.io/v1/servers
 
 Response
 
@@ -70,9 +33,9 @@ Response
             "stacks": [
                 {
                     "id": "32",
-                    "name": "stack1-us-east",
+                    "name": "s1-us-east",
                     "created": "2019-01-08 08:50:20",
-                    "provider": "dev-do-account"
+                    "provider": "do"
                 }
             ]
         },
@@ -90,7 +53,7 @@ Parameters: None
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/sites
+    curl -H "Key: $KEY" https://api.nestify.io/v1/sites
 
 Response
 
@@ -127,7 +90,7 @@ Parameters
 | Parameter | Description |
 | ------ | ------ |
 | name | Unique name for the new site. (Required) |
-| stack_id | Stack ID where this site needs to be created. (Required) |
+| vps_id | Server ID where this site needs to be created. (Required) |
 | type | CMS Type for the new site. (Required) |
 | clonesourceid | Site ID to clone data from (Required for site type 9) |
 
@@ -144,7 +107,7 @@ CMS Types
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/sites -X POST -d "name=MyWPSite&stack_id=32&type=1"
+    curl -H "Key: $KEY" https://api.nestify.io/v1/sites -X POST -d "name=MyWPSite&stack_id=32&type=1"
 
 Response
 
@@ -152,7 +115,7 @@ Response
         "result": [
             {
                 "name": "MyWPSite",
-                "stack_id": "32",
+                "vps_id": "32",
                 "type": "1",
                 "id": "52",
                 "status": "processing"
@@ -173,7 +136,7 @@ Parameters: None
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/sites/1 -X DELETE
+    curl -H "Key: $KEY" https://api.nestify.io/v1/sites/1 -X DELETE
 
 Response
 
@@ -195,7 +158,7 @@ Parameters: None
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/sites/52 
+    curl -H "Key: $KEY" https://api.nestify.io/v1/sites/52 
 
 Response
 
@@ -253,7 +216,7 @@ Copy Scope
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/sites/53 -X PUT -d "clonesourceid=52&copyscope=filesdb"
+    curl -H "Key: $KEY" https://api.nestify.io/v1/sites/53 -X PUT -d "clonesourceid=52&copyscope=filesdb"
 
 Response
 
@@ -290,7 +253,7 @@ Parameters: None
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/tags/52 
+    curl -H "Key: $KEY" https://api.nestify.io/v1/tags/52 
 
 Response
 
@@ -319,7 +282,7 @@ Parameters
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/tags/52 -X POST -d "tag=yoast"
+    curl -H "Key: $KEY" https://api.nestify.io/v1/tags/52 -X POST -d "tag=yoast"
 
 Response
 
@@ -349,7 +312,7 @@ Parameters
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/tags/52 -X DELETE -d "tag_id=11"
+    curl -H "Key: $KEY" https://api.nestify.io/v1/tags/52 -X DELETE -d "tag_id=11"
 
 Response
 
@@ -379,7 +342,7 @@ Parameters
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/domains/52 -X POST -d "domain=myapi.com"
+    curl -H "Key: $KEY" https://api.nestify.io/v1/domains/52 -X POST -d "domain=myapi.com"
 
 Response
 
@@ -401,7 +364,7 @@ Parameters: None
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/domains/52
+    curl -H "Key: $KEY" https://api.nestify.io/v1/domains/52
 
 Response
 
@@ -438,7 +401,7 @@ Parameters
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/domains/52 -X PUT -d "domain_id=11"
+    curl -H "Key: $KEY" https://api.nestify.io/v1/domains/52 -X PUT -d "domain_id=11"
 
 Response
 
@@ -463,7 +426,7 @@ Parameters
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.scaledynamix.com/v1/domains/52 -X DELETE -d "domain_id=12"
+    curl -H "Key: $KEY" https://api.nestify.io/v1/domains/52 -X DELETE -d "domain_id=12"
 
 Response
 
