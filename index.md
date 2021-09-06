@@ -90,7 +90,7 @@ Parameters
 | Parameter | Description |
 | ------ | ------ |
 | name | Unique name for the new site. (Required) |
-| vps_id | Server ID where this site needs to be created. (Required) |
+| server_id | Server ID where this site needs to be created. (Required) |
 | type | CMS Type for the new site. (Required) |
 | clonesourceid | Site ID to clone data from (Required for site type 9) |
 
@@ -107,7 +107,7 @@ CMS Types
 
 cURL (Example)
 
-    curl -H "Key: $KEY" https://api.nestify.io/v1/sites -X POST -d "name=MyWPSite&stack_id=32&type=1"
+    curl -H "Key: $KEY" https://api.nestify.io/v1/sites -X POST -d "name=MyWPSite&server_id=32&type=1"
 
 Response
 
