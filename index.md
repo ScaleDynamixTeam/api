@@ -437,3 +437,169 @@ Response
         "success": true,
         "errors": []
     }
+
+
+## List all backups of a site
+
+Lists all backups
+
+	GET /v1/backups/:siteid
+
+Parameters: None
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/backups/52
+
+Response
+
+    {
+        "result": {
+            "backups": [
+                {
+                    "id": "11",
+                    "backup": "Scheduled Backup",
+                    "created": "2021-09-08 11:03:38"
+                },
+                {
+                    "id": "10",
+                    "backup": "Pre-update-backup",
+                    "created": "2021-09-07 11:03:38"
+                }
+            ]
+        },
+        "success": true,
+        "errors": []
+    }
+
+## Create a new backup
+
+Create a new backup with specified name.
+
+	POST /v1/backups/:site_id
+	
+Parameters
+
+| Parameter | Description |
+| ------ | ------ |
+| name | Name of the backup. (Required) |
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/backups/52 -X POST -d "name=pre-update-backup"
+
+Response
+
+    {
+        "result": {
+            "status": "in_progress"
+        },
+        "success": true,
+        "errors": []
+    }
+
+## Restore a backup
+Restores the specified backup.
+
+	PUT /v1/backups/:site_id
+	
+Parameters
+
+| Parameter | Description |
+| ------ | ------ |
+| backup_id | ID of backup to be restored. (Required) |
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/backups/52 -X PUT -d "backup_id=11"
+
+Response
+
+    {
+        "result": {
+            "status": "in_progress"
+        },
+        "success": true,
+        "errors": []
+    }
+
+
+## Reset file permissions
+
+	GET /v1/resetpermissions/:siteid
+
+Parameters: None
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/resetpermissions/52
+
+Response
+
+    {
+        "result": {
+            "status": "processing"
+        },
+        "success": true,
+        "errors": []
+    }
+
+## Restart Web Services (Nginx and PHP)
+
+	GET /v1/restartwebservices/:siteid
+
+Parameters: None
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/resetpermissions/52
+
+Response
+
+    {
+        "result": {
+            "status": "processing"
+        },
+        "success": true,
+        "errors": []
+    }
+
+## Purge full page cache
+
+	GET /v1/purgecache/:siteid
+
+Parameters: None
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/purgecache/52
+
+Response
+
+    {
+        "result": {
+            "status": "processing"
+        },
+        "success": true,
+        "errors": []
+    }
+    
+## Wp-admin auto login 
+
+	GET /v1/wplogin/:siteid
+
+Parameters: None
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/wplogin/52
+
+Response
+
+    {
+        "result": {
+            "login_url": "https:\/\/www.mysite.com\/5d184112\/b0dbb6-2f2c5d-56c400de09"
+        },
+        "success": true,
+        "errors": []
+    }
