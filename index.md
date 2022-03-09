@@ -524,6 +524,31 @@ Response
     }
 
 
+## Download a backup
+Restores the specified backup.
+
+	GET /v1/downloadbackup/:backup_id
+	
+Parameters
+
+| Parameter | Description |
+| ------ | ------ |
+| backup_id | ID of backup to be downloaded. (Required) |
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/downloadbackup/52
+
+Response
+
+    {
+        "result": {
+            "download_url": "https://s3.amazonaws.com/backups/43537653463456.tar.gz"
+        },
+        "success": true,
+        "errors": []
+    }
+
 ## Reset file permissions
 
 	GET /v1/resetpermissions/:siteid
