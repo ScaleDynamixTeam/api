@@ -183,6 +183,11 @@ Response
                 "domains": [],
                 "tags": [],
                 "git-origin": "ssh:\/\/sitemanager@8.183.96.3:40745\/~\/git"
+		"stats": {
+                "bandwidth": 16,
+                "pageviews": 1725,
+                "storage": 1
+                }
             }
         ],
         "success": true,
@@ -624,6 +629,56 @@ Response
     {
         "result": {
             "login_url": "https:\/\/www.mysite.com\/5d184112\/b0dbb6-2f2c5d-56c400de09"
+        },
+        "success": true,
+        "errors": []
+    }
+    
+## Suspend a site
+
+This option redirects a website to the specified url.
+
+	POST /v1/backups/:site_id
+	
+Parameters
+
+| Parameter | Description |
+| ------ | ------ |
+| url | Url of the suspended page including https://. (Required) |
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/suspend/52 -X POST -d "url=https://myagency.com/site-suspended/"
+
+Response
+
+    {
+        "result": {
+            "status": "in_progress"
+        },
+        "success": true,
+        "errors": []
+    }
+
+
+## Unsuspend a site
+
+This option removes suspension redirects from a website.
+
+	GET /v1/unsuspend/:site_id
+	
+Parameters: None
+
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/unsuspend/52
+
+Response
+
+    {
+        "result": {
+            "status": "in_progress"
         },
         "success": true,
         "errors": []
