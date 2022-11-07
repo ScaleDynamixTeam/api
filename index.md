@@ -683,3 +683,31 @@ Response
         "success": true,
         "errors": []
     }
+
+## Update site limits
+
+This option updates various site limits, such as bandwidth, storage, pageviews.
+
+	POST /v1/updatesitelimits/:site_id
+	
+Parameters
+
+| Parameter | Description |
+| ------ | ------ |
+| limits[bw] | Bandwidth limit per month in GB (Required) |
+| limits[visits] | Pageview limit per month (Required) |
+| limits[storage] | Disk space limit in GB (Required) |
+
+cURL (Example)
+
+    curl -H "Key: $KEY" https://api.nestify.io/v1/suspend/52 -X POST -d "limits[bw]=1000" -d "limits[visits]=9000" -d "limits[storage]=10"
+
+Response
+
+    {
+        "result": {
+            "status": "in_progress"
+        },
+        "success": true,
+        "errors": []
+    }
